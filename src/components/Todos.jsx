@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useTodo } from '../context/TodoProvider';
+
+// todos Array
+// create
 
 const todos = [];
 
 function Todos() {
-  const [newTodo, setNewTodo] = useState("");
+  const [newTodo, setNewTodo] = useState('');
+  const { todos, create } = useTodo();
 
   const saveUserInput = (e) => setNewTodo(e.target.value);
-  const createTodo = () => {};
+
+  const createTodo = () => {
+    create(newTodo);
+  };
 
   return (
     <div>
