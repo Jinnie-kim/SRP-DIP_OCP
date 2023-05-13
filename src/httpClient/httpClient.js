@@ -12,7 +12,7 @@ export class HttpClient {
       ...options,
       headers: {
         'Content-type': 'application/json',
-        Authorization: this.tokenRepository.get(),
+        Authorization: 'Bearer ' + this.tokenRepository.get(),
         ...options.headers,
       },
     });
