@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { useAuth } from '../context/AuthProvider';
 
 function Auth() {
   const [userInputs, setUserInputs] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const { email, password } = userInputs;
 
@@ -15,10 +16,14 @@ function Auth() {
       [name]: value,
     }));
   };
+  const { signin, signup, logout } = useAuth();
 
-  const signin = () => {};
-  const signup = () => {};
-  const logout = () => {};
+  const signinRequest = () => {
+    signin(email, password);
+  };
+  const signupRequest = () => {
+    signup(email, password);
+  };
 
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -34,8 +39,8 @@ function Auth() {
           <input value={password} name="password" onChange={saveUserInputs} />
         </label>
       </div>
-      <button onClick={signin}>signin</button>
-      <button onClick={signup}>signup</button>
+      <button onClick={signinRequest}>signin</button>
+      <button onClick={signupRequest}>signup</button>
       <button onClick={logout}>logout</button>
     </form>
   );
