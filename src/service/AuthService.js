@@ -15,10 +15,10 @@ export class AuthService {
     // 1. api call
     const response = await this.httpClient.fetch('auth/signin', {
       method: 'POST',
-      body: {
+      body: JSON.stringify({
         email,
         password,
-      },
+      }),
     });
     const { access_token } = await response.json();
 
@@ -31,10 +31,10 @@ export class AuthService {
     // return을 해줘야 Promise가 reject인지 resolve인지 전달해줄 수 있다.
     return this.httpClient.fetch('auth/signup', {
       method: 'POST',
-      body: {
+      body: JSON.stringify({
         email,
         password,
-      },
+      }),
     });
   }
 
